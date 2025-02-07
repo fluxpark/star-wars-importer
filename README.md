@@ -1,24 +1,53 @@
-# README
+# Sentia Coding Test - Ruby on Rails Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+This Ruby on Rails application allows users to upload a CSV file containing data about people, locations, and affiliations. The application imports the data into a database and provides functionality to view, paginate, search, and sort the imported data. 
 
-* Ruby version
+The application is designed based on the user stories and requirements outlined in the coding test, ensuring that data integrity and validation are maintained throughout the process.
 
-* System dependencies
+## How to Setup
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Ruby (version 3.2.2 or later)
+- Rails (version 7 or later)
+- PostgreSQL (or your preferred database)
+- Bundler
 
-* Database initialization
+### Steps to Setup
 
-* How to run the test suite
+1. **Clone the Repository**
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+   ```bash
+   git clone git@github.com:fluxpark/star-wars-importer.git
+   cd star-wars-importer
+2. **Install Dependencies** Make sure you have Bundler installed, then run:
+    ```bash
+    bundle install
+3. **Set Up Database** Create and migrate the database:
+    ```bash
+    rake db:create
+    rake db:migrate
+    CSV_FILE_PATH=tmp/test_data.csv rake csv:import
+4. **ENV setup** Set Frontend env variable:
+    ```bash
+    cd frontend
+    cp .env.example .env
+5. **Run test** Run request test to make sure it works as expected:
+    ```bash
+    bundle exec rspec spec/requests/api/v1/people_spec.rb
+6. **Run Application** Start the Rails & FE dev server:
+    ```bash
+    rails s -p 3011
+    ```
+    and open another terminal
+    ```bash
+    cd frontend && npm start
+### What Could Be Improved
+- User Interface: Enhance the UI for a better user experience, possibly using third party modules.
+- Performance Optimization: If the dataset grows large, consider implementing background processing for the CSV import using Sidekiq.
+- Advanced Search and Filtering: Provide more advanced search capabilities, allowing users to combine multiple filters.
+- Testing: Expand test coverage to include feature tests and edge cases for CSV imports.
+- Documentation: Improve documentation, especially for API endpoints using swagger, to assist future developers or users.
+- Refactoring: Implement design patterns and solid architecture to maintain scalability as project grows
