@@ -30,20 +30,22 @@ The application is designed based on the user stories and requirements outlined 
     rake db:create
     rake db:migrate
     CSV_FILE_PATH=tmp/test_data.csv rake csv:import
-4. **ENV setup** Set Frontend env variable:
-    ```bash
-    cd frontend
-    cp .env.example .env
-5. **Run test** Run request test to make sure it works as expected:
+4. **Run test** Run request test to make sure it works as expected:
     ```bash
     bundle exec rspec spec/requests/api/v1/people_spec.rb
-6. **Run Application** Start the Rails & FE dev server:
+5. **Run Rails Server**
     ```bash
     rails s -p 3011
     ```
+6. **Frontend setup** Open another terminal and set Frontend env variable:
+    ```bash
+    cd frontend
+    yarn install
+    cp .env.example .env
+6. **Run Application** Start the Rails & FE dev server:
     and open another terminal
     ```bash
-    cd frontend && npm start
+    npm start
 ### What Could Be Improved
 - User Interface: Enhance the UI for a better user experience, possibly using third party modules.
 - Performance Optimization: If the dataset grows large, consider implementing background processing for the CSV import using Sidekiq.
